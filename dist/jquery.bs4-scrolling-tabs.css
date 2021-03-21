@@ -1,7 +1,7 @@
 /**
- * jquery-bootstrap-scrolling-tabs
- * @version v2.6.1
- * @link https://github.com/mikejacobson/jquery-bootstrap-scrolling-tabs
+ * bootstrap4-scrolling-tabs
+ * @version v1.0.0
+ * @link https://github.com/mikejacobson/bootstrap4-scrolling-tabs
  * @author Mike Jacobson <michaeljjacobson1@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -13,7 +13,7 @@
   .scrtabs-tab-container .tab-content {
     clear: left; }
 
-.scrtabs-tab-container.scrtabs-bootstrap4 .scrtabs-tabs-movable-container > .navbar-nav {
+.scrtabs-tab-container .scrtabs-tabs-movable-container > .navbar-nav {
   -ms-flex-direction: row;
   flex-direction: row; }
 
@@ -24,7 +24,8 @@
   width: 100%; }
 
 .scrtabs-tabs-movable-container {
-  position: relative; }
+  position: relative;
+  transition: transform 2s; }
   .scrtabs-tabs-movable-container .tab-content {
     display: none; }
 
@@ -34,17 +35,33 @@
 .scrtabs-tab-scroll-arrow {
   border: 1px solid #dddddd;
   border-top: none;
-  color: #428bca;
+  cursor: pointer;
   display: none;
   float: left;
   font-size: 12px;
-  height: 42px;
-  margin-bottom: -1px;
-  padding-left: 2px;
-  padding-top: 13px;
+  height: 100%;
+  padding-left: 0.5em;
+  padding-top: 1.3em;
   width: 20px; }
   .scrtabs-tab-scroll-arrow:hover {
     background-color: #eeeeee; }
+
+.scrtabs-tab-scroll-arrow > span {
+  border-right: 3px solid #007bff;
+  border-bottom: 3px solid #007bff;
+  display: block;
+  width: 8px;
+  height: 8px;
+  transform: rotate(-45deg); }
+  .scrtabs-tab-scroll-arrow > span:hover {
+    border-right-color: #0056b3;
+    border-bottom-color: #0056b3; }
+
+.scrtabs-tab-scroll-arrow-left > span {
+  transform: rotate(135deg); }
+
+.scrtabs-tab-scroll-arrow-right {
+  padding-left: 0.4em; }
 
 .scrtabs-tab-scroll-arrow,
 .scrtabs-tab-scroll-arrow .scrtabs-click-target {
@@ -57,9 +74,16 @@
 .scrtabs-tab-scroll-arrow.scrtabs-disable .scrtabs-click-target {
   color: #ddd;
   cursor: default; }
+  .scrtabs-tab-scroll-arrow.scrtabs-disable > span,
+  .scrtabs-tab-scroll-arrow.scrtabs-disable .scrtabs-click-target > span {
+    border-color: #ddd; }
 
 .scrtabs-tab-scroll-arrow.scrtabs-disable:hover {
   background-color: initial; }
 
 .scrtabs-tabs-fixed-container ul.nav-tabs > li {
   white-space: nowrap; }
+
+.nav-tabs .dropdown-menu {
+  border-top-color: transparent;
+  margin-top: 0; }

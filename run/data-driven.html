@@ -4,7 +4,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../dist/jquery.scrolling-tabs.css">
+    <link rel="stylesheet" href="../dist/jquery.bs4-scrolling-tabs.css">
 
     <style>
       .left-side {
@@ -39,14 +39,6 @@
       .st-demo-subheader:first-child {
         margin-top: 0;
       }
-
-      .custom-li a {
-        color: darkblue !important;
-      }
-
-      .custom-li-added a {
-        color: darkred !important;
-      }
     </style>
   </head>
 
@@ -68,12 +60,9 @@
     <!-- build .nav-tabs and .tab-content in here -->
     <div class="tabs-inside-here"></div>
 
-
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <script src="../dist/jquery.scrolling-tabs.js"></script>
-
+    <script src="../node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../dist/jquery.bs4-scrolling-tabs.js"></script>
     <script>
     ;(function() {
       'use strict';
@@ -96,7 +85,7 @@
       lastTabId = 11;
 
       var tabsLiContent = tabs.map(function(tab) {
-        return '<li role="presentation" title="' + tab.tooltip + '" data-trigger="hover" class="custom-li"></li>';
+        return '<li title="' + tab.tooltip + '" class="nav-item custom-li"></li>';
       });
 
       var tabsPostProcessors = tabs.map(function(tab) {
@@ -183,7 +172,7 @@
         });
 
         tabs.push(newTab);
-        tabsLiContent.push('<li role="presentation" title="' + newTab.tooltip + '" data-trigger="hover" class="custom-li-added"></li>');
+        tabsLiContent.push('<li title="' + newTab.tooltip + '" class="nav-item custom-li-added"></li>');
         tabsPostProcessors.push(function($li, $a) {
             $a.click(function() {
               console.log("anchor click! tab.tooltip: ", newTab.tooltip);

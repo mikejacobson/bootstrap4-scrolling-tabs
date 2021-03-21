@@ -5,7 +5,8 @@ $scrtabs-tabs-height: 42px !default;
 $scrtabs-border-color: 1px solid rgb(221, 221, 221) !default;
 
 // Foreground color (bootstrap blue)
-$scrtabs-foreground-color: rgb(66, 139, 202) !default;
+$scrtabs-foreground-color: rgb(0, 123, 255) !default; // #007bff
+$scrtabs-foreground-color-hover: rgb(0, 86, 179) !default; // #0056b3
 
 // Background color on hover (bootstrap gray)
 $scrtabs-background-color-hover: rgb(238, 238, 238) !default;
@@ -21,7 +22,7 @@ $scrtabs-background-color-hover: rgb(238, 238, 238) !default;
   }
 }
 
-.scrtabs-tab-container.scrtabs-bootstrap4 .scrtabs-tabs-movable-container > .navbar-nav {
+.scrtabs-tab-container .scrtabs-tabs-movable-container > .navbar-nav {
   -ms-flex-direction: row;
   flex-direction: row;
 }
@@ -35,6 +36,8 @@ $scrtabs-background-color-hover: rgb(238, 238, 238) !default;
 
 .scrtabs-tabs-movable-container {
   position: relative;
+  transition: transform 2s;
+
   .tab-content {
     display: none;
   }
@@ -50,18 +53,39 @@ $scrtabs-background-color-hover: rgb(238, 238, 238) !default;
 .scrtabs-tab-scroll-arrow {
   border: $scrtabs-border-color;
   border-top: none;
-  color: $scrtabs-foreground-color;
+  cursor: pointer;
   display: none;
   float: left;
   font-size: 12px;
-  height: $scrtabs-tabs-height;
-  margin-bottom: -1px;
-  padding-left: 2px;
-  padding-top: 13px;
+  height: 100%;
+  padding-left: 0.5em;
+  padding-top: 1.3em;
   width: 20px;
   &:hover {
     background-color: $scrtabs-background-color-hover;
   }
+}
+
+.scrtabs-tab-scroll-arrow > span {
+  border-right: 3px solid $scrtabs-foreground-color;
+  border-bottom: 3px solid $scrtabs-foreground-color;
+  display: block;
+  width: 8px;
+  height: 8px;
+  transform: rotate(-45deg);
+
+  &:hover {
+    border-right-color: $scrtabs-foreground-color-hover;
+    border-bottom-color: $scrtabs-foreground-color-hover;
+  }
+}
+
+.scrtabs-tab-scroll-arrow-left > span {
+  transform: rotate(135deg);
+}
+
+.scrtabs-tab-scroll-arrow-right {
+  padding-left: 0.4em;
 }
 
 .scrtabs-tab-scroll-arrow,
@@ -77,6 +101,10 @@ $scrtabs-background-color-hover: rgb(238, 238, 238) !default;
 .scrtabs-tab-scroll-arrow.scrtabs-disable .scrtabs-click-target {
   color: #ddd;
   cursor: default;
+
+  > span {
+    border-color: #ddd;
+  }
 }
 
 .scrtabs-tab-scroll-arrow.scrtabs-disable:hover {
@@ -85,4 +113,9 @@ $scrtabs-background-color-hover: rgb(238, 238, 238) !default;
 
 .scrtabs-tabs-fixed-container ul.nav-tabs > li {
   white-space: nowrap;
+}
+
+.nav-tabs .dropdown-menu {
+  border-top-color: transparent;
+  margin-top: 0;
 }

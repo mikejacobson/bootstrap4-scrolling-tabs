@@ -24,14 +24,42 @@ var tabElements = (function () {
     return $('<ul class="nav nav-tabs" role="tablist"></ul>');
   }
 
+  function getDefaultLeftArrow(settings) {
+    return [
+      '<div class="scrtabs-tab-scroll-arrow scrtabs-tab-scroll-arrow-left">',
+      '  <span class="' + settings.cssClassLeftArrow + '"></span>',
+      '</div>'
+    ].join('');
+  }
+
+  function getDefaultRightArrow(settings) {
+    return [
+      '<div class="scrtabs-tab-scroll-arrow scrtabs-tab-scroll-arrow-right">',
+      '  <span class="' + settings.cssClassRightArrow + '"></span>',
+      '</div>'
+    ].join('');
+  }
+
+  function getTabContainerHtml() {
+    return '<div class="scrtabs-tab-container"></div>';
+  }
+
+  function getFixedContainerHtml() {
+    return '<div class="scrtabs-tabs-fixed-container"></div>';
+  }
+
+  function getMovableContainerHtml() {
+    return '<div class="scrtabs-tabs-movable-container"></div>';
+  }
+
   function getNewElScrollerElementWrappingNavTabsInstance($navTabsInstance, settings) {
-    var $tabsContainer = $('<div class="scrtabs-tab-container"></div>'),
-        leftArrowContent = settings.leftArrowContent || '<div class="scrtabs-tab-scroll-arrow scrtabs-tab-scroll-arrow-left"><span class="' + settings.cssClassLeftArrow + '"></span></div>',
-        $leftArrow = $(leftArrowContent),
-        rightArrowContent = settings.rightArrowContent || '<div class="scrtabs-tab-scroll-arrow scrtabs-tab-scroll-arrow-right"><span class="' + settings.cssClassRightArrow + '"></span></div>',
-        $rightArrow = $(rightArrowContent),
-        $fixedContainer = $('<div class="scrtabs-tabs-fixed-container"></div>'),
-        $movableContainer = $('<div class="scrtabs-tabs-movable-container"></div>');
+    var $tabsContainer = $(getTabContainerHtml());
+    var leftArrowContent = settings.leftArrowContent || getDefaultLeftArrow(settings);
+    var $leftArrow = $(leftArrowContent);
+    var rightArrowContent = settings.rightArrowContent || getDefaultRightArrow(settings);
+    var $rightArrow = $(rightArrowContent);
+    var $fixedContainer = $(getFixedContainerHtml());
+    var $movableContainer = $(getMovableContainerHtml());
 
     if (settings.disableScrollArrowsOnFullyScrolled) {
       $leftArrow.add($rightArrow).addClass(CONSTANTS.CSS_CLASSES.SCROLL_ARROW_DISABLE);
@@ -43,8 +71,12 @@ var tabElements = (function () {
                       $rightArrow);
   }
 
+  function getTabAnchorHtml() {
+    return '<a class="nav-link" role="tab" data-toggle="tab"></a>';
+  }
+
   function getNewElTabAnchor(tab, propNames) {
-    return $('<a role="tab" data-toggle="tab"></a>')
+    return $(getTabAnchorHtml())
             .attr('href', '#' + tab[propNames.paneId])
             .html(tab[propNames.title]);
   }
@@ -53,16 +85,20 @@ var tabElements = (function () {
     return $('<div class="tab-content"></div>');
   }
 
+  function getDefaultTabLiHtml() {
+    return '<li class="nav-item"></li>';
+  }
+
   function getNewElTabLi(tab, propNames, options) {
-    var liContent = options.tabLiContent || '<li role="presentation" class=""></li>',
-        $li = $(liContent),
-        $a = getNewElTabAnchor(tab, propNames).appendTo($li);
+    var liContent = options.tabLiContent || getDefaultTabLiHtml();
+    var $li = $(liContent);
+    var $a = getNewElTabAnchor(tab, propNames).appendTo($li);
 
     if (tab[propNames.disabled]) {
-      $li.addClass('disabled');
+      $a.addClass('disabled');
       $a.attr('data-toggle', '');
     } else if (options.forceActiveTab && tab[propNames.active]) {
-      $li.addClass('active');
+      $a.addClass('active');
     }
 
     if (options.tabPostProcessor) {
@@ -73,7 +109,7 @@ var tabElements = (function () {
   }
 
   function getNewElTabPane(tab, propNames, options) {
-    var $pane = $('<div role="tabpanel" class="tab-pane"></div>')
+    var $pane = $('<div role="tabpanel" class="tab-pane fade show"></div>')
                 .attr('id', tab[propNames.paneId])
                 .html(tab[propNames.content]);
 
@@ -114,10 +150,10 @@ var tabUtils = (function () {
   }
 
   function getIndexOfClosestEnabledTab($currTabLis, startIndex) {
-    var lastIndex = $currTabLis.length - 1,
-        closestIdx = -1,
-        incrementFromStartIndex = 0,
-        testIdx = 0;
+    var lastIndex = $currTabLis.length - 1;
+    var closestIdx = -1;
+    var incrementFromStartIndex = 0;
+    var testIdx = 0;
 
     // expand out from the current tab looking for an enabled tab;
     // we prefer the tab after us over the tab before
@@ -127,9 +163,7 @@ var tabUtils = (function () {
             !$currTabLis.eq(testIdx).hasClass('disabled')) ||
             (((testIdx = startIndex - incrementFromStartIndex) >= 0) &&
              !$currTabLis.eq(testIdx).hasClass('disabled')) ) {
-
         closestIdx = testIdx;
-
       }
     }
 
@@ -159,22 +193,22 @@ var tabUtils = (function () {
 }()); // tabUtils
 
 function buildNavTabsAndTabContentForTargetElementInstance($targetElInstance, settings, readyCallback) {
-  var tabs = settings.tabs,
-      propNames = {
-        paneId: settings.propPaneId,
-        title: settings.propTitle,
-        active: settings.propActive,
-        disabled: settings.propDisabled,
-        content: settings.propContent
-      },
-      ignoreTabPanes = settings.ignoreTabPanes,
-      hasTabContent = tabs.length && tabs[0][propNames.content] !== undefined,
-      $navTabs = tabElements.getNewElNavTabs(),
-      $tabContent = tabElements.getNewElTabContent(),
-      $scroller,
-      attachTabContentToDomCallback = ignoreTabPanes ? null : function() {
-        $scroller.after($tabContent);
-      };
+  var tabs = settings.tabs;
+  var propNames = {
+    paneId: settings.propPaneId,
+    title: settings.propTitle,
+    active: settings.propActive,
+    disabled: settings.propDisabled,
+    content: settings.propContent
+  };
+  var ignoreTabPanes = settings.ignoreTabPanes;
+  var hasTabContent = tabs.length && tabs[0][propNames.content] !== undefined;
+  var $navTabs = tabElements.getNewElNavTabs();
+  var $tabContent = tabElements.getNewElTabContent();
+  var $scroller;
+  var attachTabContentToDomCallback = ignoreTabPanes ? null : function() {
+    $scroller.after($tabContent);
+  };
 
   if (!tabs.length) {
     return;
@@ -237,9 +271,9 @@ function wrapNavTabsInstanceInScroller($navTabsInstance, settings, readyCallback
     .find('a[data-toggle="tab"]')
     .removeData(CONSTANTS.DATA_KEY_BOOTSTRAP_TAB);
   
-  var $scroller = tabElements.getNewElScrollerElementWrappingNavTabsInstance($navTabsInstance.clone(true), settings), // use clone because we replaceWith later
-      scrollingTabsControl = new ScrollingTabsControl($scroller),
-      navTabsInstanceData = $navTabsInstance.data('scrtabs');
+  var $scroller = tabElements.getNewElScrollerElementWrappingNavTabsInstance($navTabsInstance.clone(true), settings); // use clone because we replaceWith later
+  var scrollingTabsControl = new ScrollingTabsControl($scroller);
+  var navTabsInstanceData = $navTabsInstance.data('scrtabs');
 
   if (!navTabsInstanceData) {
     $navTabsInstance.data('scrtabs', {
