@@ -3,4 +3,5 @@
 .sass-cache
 *.rb
 .DS_Store
+settings.json
 node_modules

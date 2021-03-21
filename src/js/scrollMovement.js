@@ -196,13 +196,9 @@ function ScrollMovement(scrollingTabsControl) {
       return;
     }
 
-    if (stc.usingBootstrap4) {
-      $activeTabAnchor = stc.$tabsUl.find('li > .nav-link.active');
-      if ($activeTabAnchor.length) {
-        $activeTab = $activeTabAnchor.parent();
-      }
-    } else {
-      $activeTab = stc.$tabsUl.find('li.active');
+    $activeTabAnchor = stc.$tabsUl.find('li > .nav-link.active');
+    if ($activeTabAnchor.length) {
+      $activeTab = $activeTabAnchor.parent();
     }
 
     if (!$activeTab || !$activeTab.length) {
@@ -295,26 +291,14 @@ function ScrollMovement(scrollingTabsControl) {
 
     smv.performingSlideAnim = true;
 
-    var targetPos = stc.rtl ? { right: leftOrRightVal } : { left: leftOrRightVal };
+    stc.$movableContainer.css({
+      transform: 'translateX(' + leftOrRightVal + ')'
+    });
 
-    stc.$movableContainer.stop().animate(targetPos, 'slow', function __slideAnimComplete() {
-      var newMinPos = smv.getMinPos();
-
+    stc.$movableContainer.on('transitionend.scrtabs', function() {
+      stc.$movableContainer.off('transitionend.scrtabs');
       smv.performingSlideAnim = false;
-
-      // if we slid past the min pos--which can happen if you resize the window
-      // quickly--move back into position
-      if (stc.movableContainerLeftPos < newMinPos) {
-        smv.decrementMovableContainerLeftPos(newMinPos);
-
-        targetPos = stc.rtl ? { right: smv.getMovableContainerCssLeftVal() } : { left: smv.getMovableContainerCssLeftVal() };
-
-        stc.$movableContainer.stop().animate(targetPos, 'fast', function() {
-          smv.refreshScrollArrowsDisabledState();
-        });
-      } else {
-        smv.refreshScrollArrowsDisabledState();
-      }
+      smv.refreshScrollArrowsDisabledState();
     });
   };
 

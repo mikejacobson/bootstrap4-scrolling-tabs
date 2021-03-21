@@ -1,47 +1,42 @@
 {
-  "name": "jquery-bootstrap-scrolling-tabs",
-  "version": "2.6.1",
-  "description": "jQuery plugin for scrollable Bootstrap Tabs",
-  "homepage": "https://github.com/mikejacobson/jquery-bootstrap-scrolling-tabs",
-  "bugs": "https://github.com/mikejacobson/jquery-bootstrap-scrolling-tabs/issues",
+  "name": "bootstrap4-scrolling-tabs",
+  "version": "1.0.0",
+  "description": "jQuery plugin for scrollable Bootstrap 4 Tabs",
+  "homepage": "https://github.com/mikejacobson/bootstrap4-scrolling-tabs",
+  "bugs": "https://github.com/mikejacobson/bootstrap4-scrolling-tabs/issues",
   "author": "Mike Jacobson <michaeljjacobson1@gmail.com>",
-  "main": "./dist/jquery.scrolling-tabs.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mikejacobson/jquery-bootstrap-scrolling-tabs.git"
+    "url": "https://github.com/mikejacobson/bootstrap4-scrolling-tabs.git"
   },
   "license": "MIT",
   "ignore": [
     ".gitignore",
-    "bower.json",
     "README.md",
     "*.scss",
     "config.rb"
   ],
   "dependencies": {
-    "bootstrap": "^3.1.1",
-    "jquery": ">=1.9.0 <4.0.0"
+    "bootstrap": "^4.6.0",
+    "jquery": "^3.6.0"
   },
   "keywords": [
     "jquery",
     "bootstrap",
+    "bootstrap4",
     "tabs",
     "scrolling",
     "scrollable"
   ],
   "devDependencies": {
-    "browser-sync": "^2.18.8",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.0.3",
-    "gulp-header": "^1.8.8",
-    "gulp-include": "^2.3.1",
-    "gulp-jshint": "^2.0.4",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.1.0",
-    "gulp-util": "^3.0.8",
-    "jshint": "^2.9.4",
-    "jshint-stylish": "^2.2.1",
-    "run-sequence": "^1.2.2"
+    "browser-sync": "^2.26.14",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-header": "^2.0.9",
+    "gulp-include": "^2.4.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2"
   }
 }
