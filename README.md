@@ -35,35 +35,35 @@ Use Cases
 Optional Features
 -----------------
 There are also optional features available:
-* [Reverse Scroll](#reverseScroll)
-* [Force Scroll to Tab Edge](#scrollToTabEdge)
-* [Disable Scroll Arrows on Fully Scrolled](#disableScrollArrowsOnFullyScrolled)
-* [Enable Horizontal Swiping for Touch Screens](#enableSwiping)
-* [Enable Right-to-Left Language Support](#enableRtlSupport)
-* [Width Multiplier](#widthMultiplier)
-* [Handle Delayed Scrollbar](#handleDelayedScrollbar)
-* [Tab Click Handler](#tabClickHandler)
-* [Custom Scroll Arrow classes](#cssClassArrows)
-* [Custom Scroll Arrow content](#customArrowsContent)
-* [Custom Tab LI content](#customTabLiContent)
-* [Tab LI and Anchor Post-Processors](#postProcessors)
+* [Reverse Scroll](#reverse-scroll)
+* [Force Scroll to Tab Edge](#force-scroll-to-tab-edge)
+* [Disable Scroll Arrows on Fully Scrolled](#disable-scroll-arrows-on-fully-scrolled)
+* [Enable Horizontal Swiping for Touch Screens](#enable-horizontal-swiping-for-touch-screens)
+* [Enable Right-to-Left Language Support](#enable-right-to-left-language-support)
+* [Width Multiplier](#width-multiplier)
+* [Handle Delayed Scrollbar](#handle-delayed-scrollbar)
+* [Tab Click Handler](#tab-click-handler)
+* [Custom Scroll Arrow classes](#custom-scroll-arrow-classes)
+* [Custom Scroll Arrow content](#custom-scroll-arrow-content)
+* [Custom Tab LI content](#custom-tab-li-content-data-driven-tabs-only)
+* [Tab LI and Anchor Post-Processors](#tab-li-and-anchor-post-processors-data-driven-tabs-only)
 
 &nbsp;
 
 Tips & Tricks
 -------------
-* [Preventing Flash of Unwrapped Tabs](#preventFlashUnwrappedTabs)
-* [Forcing a Refresh](#forcingRefresh)
-* [Forcing a Scroll to the Active Tab](#forcingScrollToActive)
-* [Custom SCSS](#customScss)
+* [Preventing Flash of Unwrapped Tabs](#preventing-flash-of-unwrapped-tabs)
+* [Forcing a Refresh](#forcing-a-refresh)
+* [Forcing a Scroll to the Active Tab](#forcing-a-scroll-to-the-active-tab)
+* [Custom SCSS](#custom-scss)
 
 &nbsp;
 
-## [Setting Defaults](#settingDefaults)
+## [Setting Defaults](#setting-defaults-1)
 
-## [Events](#events)
+## [Events](#events-1)
 
-## [Destroying the Plugin](#destroying)
+## [Destroying the Plugin](#destroying-the-plugin-1)
 
 &nbsp;
 
