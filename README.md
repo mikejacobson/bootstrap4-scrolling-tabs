@@ -23,6 +23,11 @@ And here are CodePens showing them working with:
 * <a href="https://codepen.io/mikejacobson/pen/xxgKKNX" target="_blank">HTML-defined Tabs</a>
 * <a href="https://codepen.io/mikejacobson/pen/JjEPjMB" target="_blank">Data-driven Tabs</a>
 
+Or if you prefer StackBlitz:
+
+* <a href="https://stackblitz.com/edit/bootstrap4-scrolling-tabs-demo-html-driven?file=index.html" target="_blank">HTML-defined Tabs</a>
+* <a href="https://stackblitz.com/edit/bootstrap4-scrolling-tabs-demo-data-driven-tabs?file=index.html" target="_blank">Data-driven Tabs</a>
+
 &nbsp;
 
 Use Cases
